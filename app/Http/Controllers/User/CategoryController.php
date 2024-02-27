@@ -23,7 +23,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('user.category.index');
+        $categories = Category::all();
+        return view('user.category.index', compact('categories'));
     }
 
     /**
@@ -41,36 +42,39 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
         $result = $this->categoryService->store($data);
+        return redirect()->route('categories.index')->with(['message' => $result['message']])->setStatusCode($result['code']);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Category $category)
     {
-        //
+        return view('user.category.show', compact('category'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $category)
     {
-        //
+        return view('user.category.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(CategoryRequest $request, string $id)
+    public function update(CategoryRequest $request, Category $category)
     {
-        //
+        $data = $request->validated();
+        $result = $this->categoryService->update($data, $category);
+        return redirect()->route('categories.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
         //
     }

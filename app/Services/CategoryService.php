@@ -17,4 +17,16 @@ class CategoryService
             return ['message' => $e->getMessage(), 'code' => $e->getCode()];
         }
     }
+
+    public function update(array $data, Category $category): array
+    {
+        try{
+            $category->update($data);
+            return ['message' => 'success', 'code' => 200, 'category' => $category];
+        }
+        catch (\Exception $e)
+        {
+            return ['message' => $e->getMessage(), 'code' => $e->getCode()];
+        }
+    }
 }

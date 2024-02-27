@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\IndexController;
+use App\Http\Controllers\User\ProductController;
+use App\Http\Controllers\User\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,5 +21,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resources([
+    'categories' => CategoryController::class,
+    'tags' => TagController::class,
+    'products' => ProductController::class
+]);
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
