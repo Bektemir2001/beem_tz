@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\User;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class TagRequest extends FormRequest
 {
@@ -24,5 +26,14 @@ class TagRequest extends FormRequest
         return [
             'name' => 'required|max:255'
         ];
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => 'Validation errors',
+            'data'      => $validator->errors()
+        ])->setStatusCode(403));
     }
 }

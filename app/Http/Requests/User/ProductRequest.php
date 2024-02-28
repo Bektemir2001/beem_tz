@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\User;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class ProductRequest extends FormRequest
 {
@@ -27,5 +29,14 @@ class ProductRequest extends FormRequest
             'category_id' => 'required',
             'tags' => 'nullable'
         ];
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'success'   => false,
+            'message'   => 'Validation errors',
+            'data'      => $validator->errors()
+        ])->setStatusCode(403));
     }
 }

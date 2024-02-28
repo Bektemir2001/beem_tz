@@ -54,6 +54,10 @@ class ProductService
 
     public function tagsHandle($tags)
     {
+        if(is_string($tags))
+        {
+            $tags = explode(',', $tags);
+        }
         for($i = 0; $i < count($tags); $i++)
         {
             if(!$this->isNumericString($tags[$i]))

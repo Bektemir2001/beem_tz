@@ -17,6 +17,410 @@
                         "description": "Success"
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Create new category",
+                "description": "Create new category",
+                "operationId": "cca49a87d9b0ebb9a98ad7c154b71737",
+                "requestBody": {
+                    "description": "Create new category",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "category name",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "test"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/categories/{category}": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Get category",
+                "operationId": "ff3ab984d3fe877eb16da6009394d694",
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "path",
+                        "description": "category id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "Create new category",
+                "description": "Create new category",
+                "operationId": "3146e96866d62a90bd01a7070fd61470",
+                "parameters": [
+                    {
+                        "name": "category",
+                        "in": "path",
+                        "description": "category id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Create new category",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "category name",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "test"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/products": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get list of products",
+                "operationId": "d97d1c3727cbac49708b85f7d11f7d58",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Create new product",
+                "description": "Create new product",
+                "operationId": "785644b7d7dd38af4b51dafd0fbc1b6d",
+                "requestBody": {
+                    "description": "Create new product",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "product name",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "test"
+                                    },
+                                    "description": {
+                                        "description": "product description",
+                                        "type": "text",
+                                        "format": "text",
+                                        "example": "test description"
+                                    },
+                                    "category_id": {
+                                        "description": "category",
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "1"
+                                    },
+                                    "tags": {
+                                        "description": "tags",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        },
+                                        "example": "[1,2]"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/products/{product}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get product",
+                "operationId": "db00b523e69d5dbc09c6edad76374bdc",
+                "parameters": [
+                    {
+                        "name": "product",
+                        "in": "path",
+                        "description": "product id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Create new product",
+                "description": "Create new product",
+                "operationId": "f47cf55f4f3e0b134b5e7d9a8373725d",
+                "parameters": [
+                    {
+                        "name": "product",
+                        "in": "path",
+                        "description": "product id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Create new product",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "product name",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "test"
+                                    },
+                                    "description": {
+                                        "description": "product description",
+                                        "type": "text",
+                                        "format": "text",
+                                        "example": "test"
+                                    },
+                                    "category_id": {
+                                        "description": "category",
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "1"
+                                    },
+                                    "tags": {
+                                        "description": "tags",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        },
+                                        "example": "[1,2]"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tags": {
+            "get": {
+                "tags": [
+                    "Tags"
+                ],
+                "summary": "Get list of tags",
+                "operationId": "65f85cc85cd13d2454b6c88ffff5cc3a",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Tags"
+                ],
+                "summary": "Create new tag",
+                "description": "Create new tag",
+                "operationId": "467bf3e5824fd78f9cdfb70c0ba9b172",
+                "requestBody": {
+                    "description": "Create new tag",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "tag name",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "test"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/tags/{tag}": {
+            "get": {
+                "tags": [
+                    "Tags"
+                ],
+                "summary": "Get tag",
+                "operationId": "890706647a0186ae7289ff232e056564",
+                "parameters": [
+                    {
+                        "name": "tag",
+                        "in": "path",
+                        "description": "tag id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Tags"
+                ],
+                "summary": "Create new tag",
+                "description": "Create new tag",
+                "operationId": "98168a20189fe9f710087a360f96262e",
+                "parameters": [
+                    {
+                        "name": "tag",
+                        "in": "path",
+                        "description": "tag id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Create new tag",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "tag name",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "test"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
             }
         }
     }

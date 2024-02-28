@@ -18,4 +18,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('categories', \App\Http\Controllers\Api\CategoryController::class);
+Route::apiResources([
+    'categories' => \App\Http\Controllers\Api\CategoryController::class,
+    'tags' => \App\Http\Controllers\Api\TagController::class,
+    'products' => \App\Http\Controllers\Api\ProductController::class
+]);
