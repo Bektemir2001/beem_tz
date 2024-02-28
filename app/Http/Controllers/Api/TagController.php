@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\NewRecordCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\TagRequest;
 use App\Http\Resources\GeneralResource;
@@ -62,6 +63,10 @@ class TagController extends Controller
     {
         $data = $request->validated();
         $result = $this->tagService->store($data);
+        if($result['code'] == 200)
+        {
+            event(new NewRecordCreated($result['product'], 'product'));
+        }
         return response(['message' => $result['message']])->setStatusCode($result['code']);
     }
 

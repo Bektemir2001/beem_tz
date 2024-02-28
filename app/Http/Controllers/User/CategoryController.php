@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Events\NewRecordCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CategoryRequest;
 use App\Models\Category;
@@ -42,6 +43,10 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
         $result = $this->categoryService->store($data);
+        if($result['code'] == 200)
+        {
+            event(new NewRecordCreated($result['category'], 'category'));
+        }
         return redirect()->route('categories.index')->with(['message' => $result['message']])->setStatusCode($result['code']);
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Events\NewRecordCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\TagRequest;
 use App\Models\Tag;
@@ -41,6 +42,10 @@ class TagController extends Controller
     {
         $data = $request->validated();
         $result = $this->tagService->store($data);
+        if($result['code'] == 200)
+        {
+            event(new NewRecordCreated($result['tag'], 'tag'));
+        }
         return redirect()->route('tags.index')->with(['message' => $result['message']])->setStatusCode($result['code']);
     }
 

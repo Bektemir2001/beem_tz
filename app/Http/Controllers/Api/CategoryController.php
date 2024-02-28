@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\NewRecordCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CategoryRequest;
 use App\Http\Resources\GeneralResource;
@@ -62,7 +63,10 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
         $result = $this->categoryService->store($data);
-
+        if($result['code'] == 200)
+        {
+            event(new NewRecordCreated($result['category'], 'category'));
+        }
         return response(['message' => $result['message']])->setStatusCode($result['code']);
     }
 

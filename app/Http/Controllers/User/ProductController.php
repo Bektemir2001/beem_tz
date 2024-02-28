@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Events\NewRecordCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\ProductRequest;
 use App\Models\Category;
@@ -45,6 +46,10 @@ class ProductController extends Controller
     {
         $data = $request->validated();
         $result = $this->productService->store($data);
+        if($result['code'] == 200)
+        {
+            event(new NewRecordCreated($result['product'], 'product'));
+        }
         return redirect()->route('products.index')->with(['message' => $result['message']])->setStatusCode($result['code']);
     }
 
