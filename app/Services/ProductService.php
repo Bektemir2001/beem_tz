@@ -19,7 +19,7 @@ class ProductService
                 $product->tags()->attach($tags);
             }
             DB::commit();
-            return ['message' => 'success', 'code' => 200, 'category' => $product];
+            return ['message' => 'success', 'code' => 200, 'product' => $product];
         }
         catch (\Exception $e)
         {

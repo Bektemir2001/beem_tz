@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ERController;
 use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\IndexController;
 use App\Http\Controllers\User\ProductController;
@@ -27,4 +28,5 @@ Route::resources([
     'products' => ProductController::class
 ]);
 
+Route::get('/er', [ERController::class, 'index'])->name('er.index');
 Route::get('/', [IndexController::class, 'index'])->name('index');
