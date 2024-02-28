@@ -44,7 +44,7 @@ class TagController extends Controller
         $result = $this->tagService->store($data);
         if($result['code'] == 200)
         {
-            event(new NewRecordCreated($result['tag'], 'tag'));
+            broadcast(new NewRecordCreated($result['tag'], 'tag'))->toOthers();
         }
         return redirect()->route('tags.index')->with(['message' => $result['message']])->setStatusCode($result['code']);
     }

@@ -48,7 +48,7 @@ class ProductController extends Controller
         $result = $this->productService->store($data);
         if($result['code'] == 200)
         {
-            event(new NewRecordCreated($result['product'], 'product'));
+            broadcast(new NewRecordCreated($result['product'], 'product'))->toOthers();
         }
         return redirect()->route('products.index')->with(['message' => $result['message']])->setStatusCode($result['code']);
     }

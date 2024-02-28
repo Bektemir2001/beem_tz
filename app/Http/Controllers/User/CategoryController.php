@@ -45,7 +45,7 @@ class CategoryController extends Controller
         $result = $this->categoryService->store($data);
         if($result['code'] == 200)
         {
-            event(new NewRecordCreated($result['category'], 'category'));
+            broadcast(new NewRecordCreated($result['category'], 'category'))->toOthers();
         }
         return redirect()->route('categories.index')->with(['message' => $result['message']])->setStatusCode($result['code']);
     }
